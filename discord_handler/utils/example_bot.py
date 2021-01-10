@@ -2,6 +2,8 @@ import discord
 from django.conf import settings
 import os
 import pandas as pd
+import yfinance as yf
+
 
 client = discord.Client()
 guild = discord.Guild
@@ -21,9 +23,19 @@ async def on_message(message):
         if len(message.content.split()) > 1:
             parameters = message.content.split()[1:]
 
+    #check the user
 
-    print('content:', message.content)
-    print('author:', message.author)
+    if message.content.startswith('**'):
+        stock = message.content.split()[0].replace("**", "")
+        print('stock:', stock)
+
+        stock_info = yf.Ticker(stock)
+        stock_info = stock_info.info
+        print(stock_info)
+
+    print(message.content)
+
+
 
 
 client.run(discord_token)
