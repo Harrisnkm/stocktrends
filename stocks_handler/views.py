@@ -88,11 +88,12 @@ def stock_isin(request, ticker):
     return JsonResponse(return_json)
 
 def stock_options(request, ticker):
+    '''Displays expirations dates for options'''
     stock = Ticker(ticker)
     return_json = stock.options()
     return JsonResponse(return_json)
 
-def stock_options_chain(request, ticker, expiration, option):
+def stock_option_chain(request, ticker, expiration, option):
     stock = Ticker(ticker)
-    return_json = stock.options_chain(expiration, option)
+    return_json = stock.option_chain(expiration, option)
     return JsonResponse(return_json)
