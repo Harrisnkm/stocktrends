@@ -8,6 +8,7 @@ django = "*"
 "discord.py" = "*"
 pandas = "*"
 yfinance = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
