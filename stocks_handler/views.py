@@ -1,11 +1,23 @@
-from django.shortcuts import render
-import json
 from django.http import HttpResponse, JsonResponse
-import yfinance as yf
-from .classes.ticker import Ticker
+from stocks_handler.ticker import Ticker
 
 
-# Create your views here.
+# Utilities
+
+def _url_params(url_path):
+    '''parse url get parameters'''
+    return url_path.split('/')
+
+
+def _is_quarterly(url_path):
+    '''Boolean quarterly parameter'''
+    url_params_list = _url_params(url_path)
+    return True if url_params_list[4] else False
+
+
+
+
+# Views
 
 def stock_info(request, ticker):
     #figure out what yf returns if there is no stock
@@ -13,9 +25,11 @@ def stock_info(request, ticker):
     return_json = stock.info()
     return JsonResponse(return_json)
 
-def stock_history(request, ticker, period="max"):
+def stock_history(request, ticker):
     stock = Ticker(ticker)
-    return_json = stock.history()
+    url_params = _url_params(request.path)
+    period = url_params[4] if url_params[4] else 'max' #sets the period
+    return_json = stock.history(period)
     return JsonResponse(return_json)
 
 def stock_actions(request, ticker):
@@ -33,11 +47,11 @@ def stock_splits(request, ticker):
     return_json = stock.splits()
     return JsonResponse(return_json)
 
-def stock_financials(request, ticker, quarterly):
+def stock_financials(request, ticker):
     stock = Ticker(ticker)
-    quarterly = True if quarterly else False
+    quarterly = _is_quarterly(request.path)
     return_json = stock.financials(quarterly)
-    return JsonResponse(return_json)
+    return HttpResponse(return_json)
 
 def stock_major_holders(request, ticker):
     stock = Ticker(ticker)
@@ -49,21 +63,21 @@ def stock_institutional_holders(request, ticker):
     return_json = stock.institutional_holders()
     return JsonResponse(return_json)
 
-def stock_balance_sheet(request, ticker, quarterly):
+def stock_balance_sheet(request, ticker):
     stock = Ticker(ticker)
-    quarterly = True if quarterly else False
+    quarterly = _is_quarterly(request.path)
     return_json = stock.balance_sheet(quarterly)
     return JsonResponse(return_json)
 
-def stock_cashflow(request, ticker, quarterly):
+def stock_cashflow(request, ticker):
     stock = Ticker(ticker)
-    quarterly = True if quarterly else False
+    quarterly = _is_quarterly(request.path)
     return_json = stock.cashflow(quarterly)
     return JsonResponse(return_json)
 
-def stock_earnings(request, ticker, quarterly):
+def stock_earnings(request, ticker):
     stock = Ticker(ticker)
-    quarterly = True if quarterly else False
+    quarterly = _is_quarterly(request.path)
     return_json = stock.earnings(quarterly)
     return JsonResponse(return_json)
 
@@ -78,20 +92,24 @@ def stock_recommendations(request, ticker):
     return JsonResponse(return_json)
 
 def stock_calendar_events(request, ticker):
+    '''Returns DataFrame'''
     stock = Ticker(ticker)
     return_json = stock.calendar_events()
     return JsonResponse(return_json)
 
 def stock_isin(request, ticker):
+    '''returns ISIN = International Securities Identification Number
+    String
+    '''
     stock = Ticker(ticker)
     return_json = stock.isin()
-    return JsonResponse(return_json)
+    return HttpResponse(return_json)
 
 def stock_options(request, ticker):
-    '''Displays expirations dates for options'''
+    '''Returns a tuple of expiration dates'''
     stock = Ticker(ticker)
     return_json = stock.options()
-    return JsonResponse(return_json)
+    return HttpResponse(return_json)
 
 def stock_option_chain(request, ticker, expiration, option):
     stock = Ticker(ticker)

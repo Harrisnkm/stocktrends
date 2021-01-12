@@ -26,8 +26,6 @@ class Ticker:
         return self.stock.splits
 
     def financials(self, quarterly=False):
-        print('quarterly status:' + quarterly)
-
         if quarterly:
             return self.stock.quarterly_financials
         else:
@@ -75,15 +73,15 @@ class Ticker:
     def options(self):
         return self.stock.options
 
-    def options_chain(self, expiration, option=''):
-        option = self.stock.option_chain(expiration)
+    def option_chain(self, expiration, option):
+        options = self.stock.option_chain(expiration)
 
         if option == 'calls':
-            return option.calls
+            return options.calls
         if option == 'puts':
-            return option.puts
+            return options.puts
         else:
-            return option
+            return options
 
 
 
