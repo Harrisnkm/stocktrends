@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     path('info/', views.stock_info),
-    path('history/<period>', views.stock_history),
+    path('history/', views.stock_history),
+    path('history/<period>/', views.stock_history),
     path('actions/', views.stock_actions),
     path('dividends/', views.stock_dividends),
     path('splits/', views.stock_splits),

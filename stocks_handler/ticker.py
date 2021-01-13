@@ -74,6 +74,7 @@ class Ticker:
         return self.stock.options
 
     def option_chain(self, expiration, option):
+        '''User must include an option?'''
         options = self.stock.option_chain(expiration)
 
         if option == 'calls':
