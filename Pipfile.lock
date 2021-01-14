@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0090db345f69730333e200822a9eb3759d86c64eccdf1155bb1fc749460964d4"
+            "sha256": "3c10cde931361c25c01ad91098aeb6f8887434747246a42e6af732ebf7bd4a51"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -396,11 +396,8 @@
             "version": "==1.6.3"
         },
         "yfinance": {
-            "hashes": [
-                "sha256:65d39bccf16bef35f6a08bf0df33650c0515b5ce8ea3c53924601f5fe00590cb"
-            ],
-            "index": "pypi",
-            "version": "==0.1.55"
+            "git": "https://github.com/Harrisnkm/yfinance.git",
+            "ref": "83e0f5579118c12875abcaf6705dea562407b05e"
         }
     },
     "develop": {}

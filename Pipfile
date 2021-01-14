@@ -7,8 +7,8 @@ name = "pypi"
 django = "*"
 "discord.py" = "*"
 pandas = "*"
-yfinance = "*"
 psycopg2 = "*"
+yfinance = {git = "https://github.com/Harrisnkm/yfinance.git"}
 
 [dev-packages]
 
