@@ -1,0 +1,19 @@
+.App {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  grid-template-rows: 3rem 1fr;
+  grid-template-areas:
+  '. .'
+  '. app-content';
+}
+
+.App-content {
+  grid-area: app-content;
+}
+
+.TheNavigation {
+
+}
+
+
+

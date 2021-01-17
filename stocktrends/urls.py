@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('stocks/<str:ticker>/', include('stocks_handler.urls')),
+    path('api/analysts/', include('analysts.urls')),
     path('admin/', admin.site.urls),
+
 ]

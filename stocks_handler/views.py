@@ -1,13 +1,9 @@
 from django.http import HttpResponse, JsonResponse
+from app.core.utils.helpers import _url_params, _orient_records_to_list, _df_to_list, _success_response
 from stocks_handler.ticker import Ticker
-import json
-
 
 # Utilities
 
-def _url_params(url_path):
-    '''parse url get parameters'''
-    return url_path.split('/')
 
 
 def _is_quarterly(url_path):
@@ -16,34 +12,6 @@ def _is_quarterly(url_path):
     return True if url_params_list[4] else False
 
 
-def _success_response(return_json):
-    '''Encloses Results in Json to passback to FE'''
-    return_dict = {
-        'success': True,
-        'results': return_json
-    }
-
-    return return_dict
-
-
-def _orient_records_to_list(df):
-    '''Records Orientation -> Json'''
-    df_json_str = df.to_json(orient="records")
-    return_json = json.loads(df_json_str)
-    return _success_response(return_json)
-
-def _df_to_list(df):
-    df_json_str = df.to_json()
-    return_json = json.loads(df_json_str)
-    return _success_response(return_json)
-
-
-def _is_df_empty(df):
-    '''Checks if dataframe is empty
-    may not need this'''
-    if df.empty:
-        print('dataframe is empty')
-        return HttpResponse('Dataframe is empty')
 
 # Views
 

@@ -1,3 +1,21 @@
+.AnalystProfile {
+  background-color: #F5F7F9;
+}
 
+.AnalystProfileInfo {
+  height: 100%;
+}
+
+.AnalystProfileTable {
+  height: 100%;
+}
+
+.AnalystProfileAwards {
+  height: 100%;
+}
+
+.AnalystProfileChart {
+  height: 100%;
+}
 
 /*# sourceMappingURL=AnalystProfile.css.map */

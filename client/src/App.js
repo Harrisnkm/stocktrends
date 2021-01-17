@@ -1,11 +1,22 @@
 import './App.scss';
-import {Button} from 'carbon-components-react'
+import {Link, Switch, Route } from 'react-router-dom';
+import TheNavigation from "./components/TheNavigation/TheNavigation";
+import AnalystsDashboard from "./components/pages/AnalystsDashboard/AnalystsDashboard";
+import AnalystProfile from "./components/pages/AnalystProfile/AnalystProfile";
+
 
 function App() {
   return (
     <div className="App">
-     <p>This is the App</p>
-        <Button>Create React Component</Button>
+        <TheNavigation/>
+
+        <div className="App-content">
+            <Switch>
+                <Route exact path='/analysts' component={AnalystsDashboard}/>
+                <Route exact path='/analysts/:analystId' component={AnalystProfile}/>
+            </Switch>
+        </div>
+
     </div>
   );
 }

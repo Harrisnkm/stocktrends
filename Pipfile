@@ -9,6 +9,7 @@ django = "*"
 pandas = "*"
 psycopg2 = "*"
 yfinance = {git = "https://github.com/Harrisnkm/yfinance.git"}
+pillow = "*"
 
 [dev-packages]
 

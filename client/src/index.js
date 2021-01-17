@@ -4,11 +4,35 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {BrowserRouter} from 'react-router-dom'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {combineReducers} from 'redux'
+
+import {reducer as stocksReducer} from './reducers/stocks'
+import {reducer as analystsReducer} from './reducers/analysts'
+
+const rootReducer = combineReducers({
+    stocks: stocksReducer,
+    analyst: analystsReducer
+})
+
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    (
+        <Provider store={store}>
+            <BrowserRouter>
+                <React.StrictMode>
+                    <App/>
+                </React.StrictMode>
+            </BrowserRouter>
+        </Provider>
+    ),
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
