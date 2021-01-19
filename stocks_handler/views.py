@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse
-from app.core.utils.helpers import _url_params, _orient_records_to_list, _df_to_list, _success_response
+from app.core.utils.helpers import _url_params, _orient_records_to_list, _df_to_list, _success_response, _json_response, _push_to_results
 from stocks_handler.ticker import Ticker
 
 # Utilities
@@ -18,7 +18,9 @@ def _is_quarterly(url_path):
 def stock_info(request, ticker):
     # figure out what yf returns if there is no stock
     stock = Ticker(ticker)
-    return_json = stock.info()
+    stock_info = stock.info()
+    return_json = _json_response()
+    return_json = _push_to_results('stock_info', stock_info, return_json)
     return JsonResponse(return_json)
 
 

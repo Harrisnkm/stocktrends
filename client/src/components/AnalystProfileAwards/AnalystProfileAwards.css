@@ -2,23 +2,42 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 10vh;
 }
 
 .AnalystProfileAwards-Award {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: #ffffff;
   border-radius: 0.5rem;
   width: 25vw;
   height: 10vh;
   box-shadow: 5px 5px 8px #888888;
+  color: #203143;
 }
 
 .AnalystProfileAwards-AwardRank {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 80%;
+}
+.AnalystProfileAwards-AwardRank .AnalystProfileAwards-AwardRank-Type {
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: black;
+}
+.AnalystProfileAwards-AwardRank .AnalystProfileAwards-AwardRank-Rank {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.AnalystProfileAwards-AwardStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80%;
 }
 
 /*# sourceMappingURL=AnalystProfileAwards.css.map */

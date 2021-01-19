@@ -1,13 +1,46 @@
 @import '~@carbon/themes/scss/themes';
 
 .AnalystProfileInfo {
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
   width: 80vw;
   background-color: #ffffff; //replace with theme later
-  margin: 0 auto;
+  margin: 5vh auto 10vh ;
+  box-shadow: 5px 5px 8px #888888;
+  border-radius: .5rem;
+  padding: 1rem;
 
 }
 
 .AnalystProfileInfo-Meta {
+  display: flex;
+  justify-content: flex-start;
 
+
+  .AnalystProfileInfo-Meta-User {
+    font-size: 1.75rem;
+
+    .fab.fa-discord {
+      color: #7289DA;
+      margin-left: .5rem;
+
+    }
+  }
+}
+
+.AnalystProfileInfo-Subscribe {
+  display: flex;
+  justify-content: flex-end;
+
+  .AnalystProfileInfo-Subscribe-Btn {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    border-radius: .5rem;
+    box-shadow: 5px 5px 8px #888888;
+
+  }
 }

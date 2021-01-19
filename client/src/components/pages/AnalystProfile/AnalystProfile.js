@@ -16,7 +16,8 @@ function AnalystProfile(props) {
     }
 
 
-    console.log(props.match.params.analystId)
+    console.log('analystId:'+ props.match.params.analystId)
+    //useEffect(doFetch, [])
 
 
     return (

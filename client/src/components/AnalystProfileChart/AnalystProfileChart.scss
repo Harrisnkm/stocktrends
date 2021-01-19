@@ -1,0 +1,38 @@
+.AnalystProfileChart {
+  display: flex;
+  justify-content: space-around;
+  height: auto;
+
+}
+
+.AnalystProfileChart-BarChart {
+  width: 70%;
+  box-shadow: 5px 5px 8px #888888;
+  padding: .5rem;
+  background-color: #ffffff;
+}
+
+.AnalystProfileChart-Form {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  box-shadow: 5px 5px 8px #888888;
+  border-radius: .5em;
+  height: 100%;
+
+  .AnalystProfileChart-FormHeader {
+    text-align: left;
+    text-decoration: underline;
+    margin-bottom: 2rem;
+  }
+
+}
+
+.AnalystProfileChart-Ticker {
+  display: flex;
+  justify-content: flex-start;
+
+  .AnalystProfileChart-Ticker-Info {
+    padding: .25rem;
+    font-size: 1rem;
+  }
+  }
