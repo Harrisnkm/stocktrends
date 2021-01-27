@@ -32,11 +32,26 @@ def _push_to_results(key, value, return_json):
     return return_json
 
 
-def _orient_records_to_list(df):
-    '''Records Orientation -> Json'''
-    df_json_str = df.to_json(orient="records")
+def _orient_results_to_list(df, orient):
+    '''
+    Formats DF results to JSON
+
+    :param df: dataFrame from yfinance
+    :param orient: orient type for pandas
+    :return: formatted JSON
+    '''
+    df_json_str = df.to_json(orient=orient)
     return_json = json.loads(df_json_str)
-    return _success_response(return_json)
+    return return_json
+
+
+def _orient_records_to_list(df):
+    '''This is deprecated, refactor code to use _orient_results_to_list'''
+    # df_json_str = df.to_json(orient="records")
+    df_json_str = df.to_json(orient='records')
+    return_json = json.loads(df_json_str)
+    # return _success_response(return_json)
+    return return_json
 
 
 def _df_to_list(df):

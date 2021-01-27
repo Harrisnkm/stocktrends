@@ -2,18 +2,18 @@ import React, {useState, useEffect} from 'react'
 import './AnalystProfileChart.scss'
 import { SimpleBarChart} from "@carbon/charts-react";
 import "@carbon/charts/styles.css";
-import { DatePicker, DatePickerInput, TextInput, Modal, Loading} from "carbon-components-react";
-import Slider, {Range} from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import { DatePicker, DatePickerInput, TextInput, Modal, Loading, ContentSwitcher, Switch} from "carbon-components-react";
 import AnalystProfileChartModal from "../AnalystProfileChartModal/AnalystProfileChartModal";
+import AnalystProfileChartChart from "../AnalystProfileChartChart/AnalystProfileChartChart";
 
 
 function AnalystProfileChart(){
 
 	const [loading, setLoading] = useState(false)
-	const [stockSymbol, setStockSymbol] = useState()
+	const [stockSymbol, setStockSymbol] = useState('')
 	const [stockModal, setStockModal] = useState(false)
 	const [stockInfo, setStockInfo] = useState({})
+
 
 
 	function onSymbolChange(ev) {
@@ -31,6 +31,7 @@ function AnalystProfileChart(){
 				console.log(data['results'])
 				setLoading(!loading)
 			})
+			.catch((error) => {console.error('error:', error) })
 
 	}
 
@@ -51,65 +52,14 @@ function AnalystProfileChart(){
 	// useEffect(fetchStockInfo, [])
 
 
-    const state = {
-		data: [
-	{
-		"group": "Qty",
-		"value": 65000
-	},
-	{
-		"group": "More",
-		"value": -29123
-	},
-	{
-		"group": "Sold",
-		"value": 35213
-	},
-	{
-		"group": "Restocking",
-		"value": 51213
-	},
-	{
-		"group": "Misc",
-		"value": 16932
-	}
-],
-		options: {
-	"title": "Simple bar (custom legend order)",
-	"axes": {
-		"left": {
-			"mapsTo": "value"
-		},
-		"bottom": {
-			"mapsTo": "group",
-			"scaleType": "labels"
-		}
-	},
-	"legend": {
-		"order": [
-			"Restocking",
-			"Misc",
-			"Sold",
-			"Qty",
-			"More"
-		]
-	},
-	"height": "400px"
-}
-	};
 
 
     return(
         <div className='AnalystProfileChart'>
-            <div className='AnalystProfileChart-BarChart'>
 
-                <SimpleBarChart
-                    data={state.data}
-                options={state.options}
-                />
-            </div>
-
-
+			<AnalystProfileChartChart
+				stockSymbol={stockSymbol}
+			/>
 
             <div className='AnalystProfileChart-Form'>
                 <h2 className='AnalystProfileChart-FormHeader'>Search Options</h2>
@@ -119,6 +69,7 @@ function AnalystProfileChart(){
 						<TextInput
 							id="ticker-input"
 							invalidText="Not a valid symbol"
+							labelText="Symbol"
 							placeholder="Ticker Symbol"
 							onChange={onSymbolChange}
 
@@ -134,10 +85,6 @@ function AnalystProfileChart(){
 
 
 
-				</div>
-
-				<div className='AnalystProfileChart-DateSlider'>
-					<Slider/>
 				</div>
 
 				<DatePicker dateFormat="m/d/Y" datePickerType="range">
